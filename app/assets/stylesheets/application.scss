@@ -1,0 +1,119 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_self
+ */
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+* {
+          margin: 0;
+          padding: 0;
+        }
+body {
+            background-color: #000000;
+        }
+
+        .main-visual {
+            border-top: 8px solid #fff;
+            border-right: 10px solid #fff;
+            border-left: 10px solid #fff;
+            border-bottom: 8px solid #fff;
+            text-align: center; /* 文字を中央揃えにする */
+        }
+
+        .main-visual-text {
+            color: #fff; /* 文字色を白に変更 */
+        }
+
+        .main-visual-content{
+        }
+
+        main {
+          width: 800px;
+          margin: 0 auto;
+          padding: 70px 0;
+        }
+        .blog {
+          width: 540px;
+          float: left;
+          margin-right: 30px;
+        }
+        .blog-headline {
+          border-bottom: 8px solid #fff;
+          text-align: center;
+          line-height: 0.6;
+          color: #008BBB;
+        }
+        .blog-box {
+          padding-top: 50px;
+        }
+        .blog-item {
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+          border-bottom: 1px solid #fff;
+        }
+        .blog-image {
+          float: left;
+          height: 180px;
+        }
+        .blog-text-headline {
+          padding-bottom: 15px;
+        }
+        .blog-text {
+          float: left;
+          padding: 30px 0 0 25px;
+        }
+        .blog-date {
+          display: inline-block;
+          font-size: 12px;
+        }
+        .category {
+          display: inline-block;
+          padding: 5px 8px;
+          background-color: #acabab;
+          border-radius: 3px;
+          color: #fff;
+          font-size: 11px;
+        }
+        .sidebar {
+          width: 230px;
+          float: left;
+        }
+        .sidebar-headline, .instagram-headline, .categories-headline {
+          border-bottom: 8px solid #fff;
+          text-align: center;
+          line-height: 0.6;
+        }
+        .sidebar-contents {
+          padding: 50px 0;
+        }
+        .popular-text, .categories-text {
+          padding-bottom: 5px;
+          border-bottom: 1px solid #fff;
+          margin-bottom: 5px;
+        }
+        .popular-text:last-child, .categories-text:last-child {
+          margin: 0;
+          padding: 0;
+          border: none;
+        }
+        .instagram-box {
+          float: left;
+          width: 110px;
+          padding-top: 110px;
+          background-size: cover;
+          background-position: center;
+        }
+        .instagram-box:nth-child(odd) {
+          margin: 0 10px 10px 0;
+        }

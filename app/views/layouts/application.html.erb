@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Treemusic</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="/public/home/top">
+            <%= image_tag 'Free_Sample_By_Wix.jpeg', :size =>'100x50' %>
+          </a>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item active">
+                <a class="nav-link" href="/public/home/top">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li class="nav-item">
+                <div class="nav-link">
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+                </div>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/public/blogs">blogs</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">tracks</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/public/user">my plofile</a>
+              </li>
+
+            <% else %>
+
+              <li class="nav-item active">
+                <a class="nav-link" href="/public/home/top.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/users/sign_up">log in</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="/public/blogs">blogs</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="#">tracks</a>
+              </li>
+              
+              <% end %>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+          </div>
+        </nav>
+    </header>
+    <%= yield %>
+  </body>
+  <footer>
+    <div style="text-align: center; color: #fff;">
+                <p><strong>©treemusic since 2020</strong></p>
+    </div>
+  </footer>
+</html>
