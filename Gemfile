@@ -77,3 +77,8 @@ gem 'pry-byebug'
 gem 'audiojs-rails'
 
 gem 'ransack'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
