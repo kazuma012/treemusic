@@ -79,6 +79,7 @@ gem 'audiojs-rails'
 gem 'ransack'
 
 gem 'carrierwave'
+gem 'carrierwave-audio'
 
 gem 'bulma-rails'
 
