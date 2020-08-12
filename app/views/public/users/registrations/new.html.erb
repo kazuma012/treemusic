@@ -1,56 +1,94 @@
-<h2>新規会員登録</h2>
+<section class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title">
+        新規会員登録
+      </h2>
+    </div>
+  </div>
+</section>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="colum is-5">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 　
-  <div class="field">
-    <%= f.label :名前%><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "name", placeholder: "姓" %>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "name", placeholder: "名" %>
-  </div>
+        <div class="field">
+          <%= f.label :名前%><br />
+          <p class="control has-icons-left">
+            <%= f.text_field :last_name, autofocus: true, autocomplete: "name", placeholder: "姓" %>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "name", placeholder: "名" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p> 
+        </div>
 
-  <div class="field">
-    <%= f.label :フリガナ %><br />
-    <%= f.text_field :sub_last_name, autofocus: true, autocomplete: "name", placeholder: "セイ" %>
-    <%= f.text_field :sub_first_name, autofocus: true, autocomplete: "name", placeholder: "メイ" %>
-  </div>
+        <div class="field">
+          <%= f.label :フリガナ %><br />
+          <p class="control has-icons-left">
+            <%= f.text_field :sub_last_name, autofocus: true, autocomplete: "name", placeholder: "セイ" %>
+            <%= f.text_field :sub_first_name, autofocus: true, autocomplete: "name", placeholder: "メイ" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="field">
+          <%= f.label :メールアドレス %><br />
+          <p class="control has-icons-left">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
 
-  <div class="field">
-    <%= f.label :郵便番号 %><br />
-    <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号" %>
-  </div>
+        <div class="field">
+          <%= f.label :電話番号 %><br />
+          <p class="control has-icons-left">
+            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "phone number" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
 
-  <div class="field">
-    <%= f.label :住所 %><br />
-    <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "住所" %>
-  </div>
+        <div class="field">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+          <% end %><br />
+          <p class="control has-icons-left">
+            <%= f.password_field :password, autocomplete: "new-password" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
 
-  <div class="field">
-    <%= f.label :電話番号 %><br />
-    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "電話番号" %>
-  </div>
+        <div class="field">
+          <%= f.label :"パスワード(確認用)" %><br />
+          <p class="control has-icons-left">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <span class="icon is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
 
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div class="actions">
+          <%= f.submit "登録" %>
+        </div>
+      <% end %>
 
-  <div class="field">
-    <%= f.label :"パスワード(確認用)" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
+</section>
 
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>

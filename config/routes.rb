@@ -7,6 +7,8 @@ Rails.application.routes.draw do
                                        passwords: 'public/users/passwords' }
   namespace :public do
     get 'home/top'
+    get 'blogs/random',to:"blogs#random"
+    get 'search',to:"blogs#search"
     get 'home/about'
   end
   root 'public/home#top'
@@ -14,6 +16,9 @@ Rails.application.routes.draw do
   	resource :user
   	get 'users/quit/:id' => 'users#quit'
     put "/users/:id/hide" => "users#hide", as: 'users_hide'
+    resources :genres do
+    	get :search, on: :collection
+    end
     resources :tracks
     resources :blogs do
       resource :favorites, only: [:create, :destroy]

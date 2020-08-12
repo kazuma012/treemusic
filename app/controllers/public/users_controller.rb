@@ -37,8 +37,6 @@ class Public::UsersController < ApplicationController
                                     :sub_last_name, 
                                     :sub_first_name, 
                                     :email,  
-                                    :address, 
-                                    :postal_code, 
                                     :phone_number)
   end
   

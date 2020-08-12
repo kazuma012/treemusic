@@ -41,6 +41,10 @@ class Public::TracksController < ApplicationController
     	#redirect_to public_tracks_path
     #end
 
+    #def random
+        #render'random_ajax'
+    #end
+
     #def search
     	#@artists = Artist.all
     	#@tracks = Track.all

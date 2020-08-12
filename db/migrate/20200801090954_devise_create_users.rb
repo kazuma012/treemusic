@@ -35,9 +35,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :first_name
       t.string :sub_last_name
       t.string :sub_first_name
-      t.string :address
-      t.string :postal_code
       t.string :phone_number
+      t.string :profile_image_id
+      t.text :profile
       t.boolean :flag, null: false, default: false
 
       t.timestamps null: false

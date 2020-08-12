@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_01_092246) do
+ActiveRecord::Schema.define(version: 2020_08_11_183100) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +25,16 @@ ActiveRecord::Schema.define(version: 2020_08_01_092246) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "artists", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "audios", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "blog_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -34,6 +44,10 @@ ActiveRecord::Schema.define(version: 2020_08_01_092246) do
   end
 
   create_table "blogs", force: :cascade do |t|
+    t.integer "blog_image_id"
+    t.string "title"
+    t.text "body"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -61,6 +75,8 @@ ActiveRecord::Schema.define(version: 2020_08_01_092246) do
   end
 
   create_table "tracks", force: :cascade do |t|
+    t.string "track_image_id"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,9 +91,9 @@ ActiveRecord::Schema.define(version: 2020_08_01_092246) do
     t.string "first_name"
     t.string "sub_last_name"
     t.string "sub_first_name"
-    t.string "address"
-    t.string "postal_code"
     t.string "phone_number"
+    t.string "profile_image_id"
+    t.text "profile"
     t.boolean "flag", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

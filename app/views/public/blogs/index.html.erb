@@ -1,68 +1,49 @@
-<body>
-	<div class="body">
-		<div class="container">
-			<% if flash[:notice] %>   <p><%= flash[:notice] %></p> <% end %> 
-			<div class="row">
-				<% if @newblog.errors.any? %>
-				  <div id="error_explanation">
-				 	<h2><%= pluralize(@newblog.errors.count, "error") %> prohibited this book from being saved:</h2>
-				 	<ul>
-				 		<% @newblog.errors.full_messages.each do |msg| %>
-				 		  <li><%= msg %></li>
-				        <% end %>
-				    </ul>
-				  </div>
-				  <% end %>
-				  <div class="col-xs-9">
-						<h2>Books</h2>
-						<table calss="table">
-							<thead>
-								<tr>
-									<th></th>
-									<th>Title</th>
-									<th>Opinion</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% @blogs.each do |blogs| %>
-								<tr>
-									<td>
-									  <%= link_to user_path(blog.user) do %>
-									  	<%= attachment_image_tag blog.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'50x50' %>
-									  <% end %>
-								    </td>
-								    <td>
-									    <%= link_to blog_path(blog.id) do %>
-									   	<%= book.title %>
-									    <% end %>
-								    </td>
-									<td>
-										<%= book.body %>
-									</td>
-								<% if blog.favorited_by?(current_user) %>
-									<td>
-									    <%= link_to book_favorites_path(book), method: :delete do %>
-									    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-									    <%= book.favorites.count %> いいね
-									    <% end %>
-									</td>
-									<% else %>
-									<td>
-									    <%= link_to book_favorites_path(book), method: :post do %>
-									    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-									    <%= blog.favorites.count %> いいね
-									    <% end %>
-								    </td>
-									<td>
-									    <%= link_to "#{blog.blog_comments.count} コメント数:", blog_path(blog.id) %>
-									</td>
-								<% end %>
-								</tr>
-								<% end %>
-							</tbody>
-					    </table>
-		            </div>
-		    </div>
-		</div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-turbolinks = "false">
+        新規投稿
+      </button>
     </div>
-</body>
+    <div class="col-9">
+      <%= render 'blogs', blogs: @blogs %>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <%= form_for [:public, @blog], remote: true do |f| %>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <%= f.file_field :blog_image %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :title, "ブログタイトル" %>
+            <%= f.text_field :title, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :body, "ブログ" %>
+            <%= f.text_area :body, class: "form-control" %>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

@@ -12,12 +12,15 @@
 
     <title>treemusic</title>
     <style>
-        body{
-            backgrougnd-color: #000000;
-            font-family: Open sans;
+body{
+          background-color: #f7f7f7;
         }
 
-
+        img{
+          width: 100%;
+          min-height: 250px;
+        }
+        
         .main{
            padding: 40px 0;
         }
@@ -31,8 +34,8 @@
            display: block;
            border-radius: 7px;
            overflow: hidden;
-           box-shadow: 0 15px 15px #3d2173a1;
-           transition: all ease 0.4%;
+           box-shadow: 0 15px 35px #3399FF;
+           transition: all ease 0.4s;
         }
 
         .album-poster:hover{
@@ -72,11 +75,9 @@
         #aplayer.showPlayer{
            bottom: 0%;
         }
-
     </style>
   </head>
   <body>
-
     <div class="main">
       <div class="container">
         <div class="row">
@@ -85,56 +86,57 @@
           </div>
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="1">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
-            <h4>martin garrix</h4>
+            <h4>Artist: martin garrix</h4>
+            <h4>Song: bensound-summer</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="2">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="" >
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="3">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="4">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="5">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="6">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="7">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
 
           <div class="col-md-3">
             <a href="javascript:void();" class="album-poster" data-switch="8">
-              <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+              <image src="/image/shutterstock_369109598.jpg" alt="">
             </a>
             <h4>martin garrix</h4>
           </div>
@@ -145,35 +147,35 @@
             </div>
             <div class="col-md-2">
               <a href="javascript:void();" class="album-poster">
-                <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+                <image src="/image/shutterstock_369109598.jpg" alt="">
               </a>
               <h4>martin garrix</h4>
             </div>
 
             <div class="col-md-2">
               <a href="javascript:void();" class="album-poster">
-                <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+                <image src="/image/shutterstock_369109598.jpg" alt="">
               </a>
               <h4>martin garrix</h4>
             </div>
 
             <div class="col-md-2">
               <a href="javascript:void();" class="album-poster">
-                <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+                <image src="/image/shutterstock_369109598.jpg" alt="">
               </a>
               <h4>martin garrix</h4>
             </div>
 
             <div class="col-md-2">
               <a href="javascript:void();" class="album-poster">
-                <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+                <image src="/image/shutterstock_369109598.jpg" alt="">
               </a>
               <h4>martin garrix</h4>
             </div>
 
             <div class="col-md-2">
               <a href="javascript:void();" class="album-poster">
-                <%= image_tag 'shutterstock_369109598.jpg', :size => '50x50' %>
+                <image src="/image/shutterstock_369109598.jpg" alt="">
               </a>
               <h4>martin garrix</h4>
             </div>
@@ -211,13 +213,10 @@
               audio: [{
                   name: 'Bensound Summer',
                   artist: 'No name',
-                  url: 'mp3/bensound-summer.mp3',
-                  cover: 'Free_Sample_By_Wix.jpeg'
+                  url: '/mp3/bensound-summer.mp3',
+                  cover: '/image/shutterstock_369109598.jpg'
               }]
           });
     </script>
-
-
-
   </body>
 </html>
