@@ -1,4 +1,4 @@
 class TrackComment < ApplicationRecord
 	belongs_to :tracks
-	belogns_to :user
+	belongs_to :user
 end
