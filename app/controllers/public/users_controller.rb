@@ -39,11 +39,7 @@ class Public::UsersController < ApplicationController
   private
   
   def user_params
-  	  params.require(:user).permit(:username, 
-                                    :email,  
-                                    :phone_number,
-                                    :profile_image,
-                                    :profile)
+  	  params.require(:user).permit(:username, :email, :phone_number,　:profile_image,　:profile)
   end
   
   def ensure_corrent_user
