@@ -9,87 +9,103 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <style>
+        * {
+        margin: 0;
+        padding: 0;
+          }
+
+        body{
+        background-color: #031321;
+        }
+
+        .page-info{
+        position: absolute;
+        top: 15%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: #1670f0;
+        padding: 30px 60px;
+        font-size: 30px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-decoration: none;
+        box-shadow: 0 20px 50px rgba(0,0,0,.5);
+        overflow: hidden;
+        }
+
+        .page-info:before{
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        bottom: 2px;
+        width: 40%;
+        background: rgba(255,255,255,0.05);
+        }
+
+        li > a{
+        position: relative;
+        display: inline-block;
+        color: #2196f3;
+        text-transform: uppercase;
+        padding: 1px;
+        letter-spacing: 4px;
+        overflow: hidden;
+        transition: 0.2s;
+        }
+
+        li > a:hover{
+        color: #255784;
+        box-shadow: 0 0 10px #333399, 0 0 40px #333399, 0 0 80px #333399;
+        transition: 01s;
+        }
+  </style>
+
   <body data-turbolinks="false">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tree Music</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
+              <%= render 'layouts/public_user_signed_in' %>
+            <% elsif admin_signed_in? %>
+              <%= render 'layouts/admin_signed_in' %>
+            <% else %>
+              <%= render 'layouts/public_user_not_signed_in' %>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+    </header>
     <% if flash[:notice] %>
-      <div class="notification is-info">
-        <p class="notice"><%= notice %></p>
-      </div>
+      <p class="notice" style="color: green; margin: auto;">
+        <%= notice %>
+      </p>
     <% end %>
     <% if flash[:alert] %>
-      <div class="notification is-danger">
-        <p class="alert"><%= alert %></p>
-      </div>
+      <p class="alert" style="color: red; margin: auto;">
+        <%= alert %>
+      </p>
     <% end %>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/public/home/top">
-            <h5 style="background-color: #99cc00;">Tree Music</h5>
-          </a>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            <% if user_signed_in? %>
-              <li class="nav-item active">
-                <a class="nav-link" href="/public/home/top">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-              <li class="nav-item">
-                <div class="nav-link">
-                  <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-                </div>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/public/blogs">blogs</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/public/tracks">tracks</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/public/user">my plofile</a>
-              </li>
-
-            <% else %>
-
-              <li class="nav-item active">
-                <a class="nav-link" href="/public/home/top.html">Home <span class="sr-only">(current)</span></a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/users/sign_in">log in</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/users/sign_up">sing up</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="/public/blogs">blogs</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="#">tracks</a>
-              </li>
-              
-              <% end %>
-            </ul>
-            <form class="form-inline my-2 my-lg-0" action="/search">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-          </div>
-        </nav>
-    </header>
     <%= yield %>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </body>
   <footer>
-    <div style="text-align: center; color: #fff;">
+    <% if user_signed_in? %>
+      <div class="container" style="color: #CC0099; padding-top: 5px; margin-left: 42%;">
+        <div class="row">
+          <div class="bottom">
                 <p><strong>©treemusic since 2020</strong></p>
-    </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </footer>
 </html>

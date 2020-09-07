@@ -1,0 +1,125 @@
+<style>
+        .container{
+	    	margin-top: 15%;
+	    	margin-left: 15%;
+	    }
+
+	    figure > img{
+	    	margin-left: 15px;
+	    }
+
+	    small{
+	    	margin-left: 50px;
+	    }
+
+</style>
+
+<div class="page-info">
+	Show
+</div>
+
+<div class="container">
+    <div class="row">
+		<div class="col-10">
+			<div class="blogs">
+				<div class="card">
+				  	<div class="card-body">				  		
+				  		<figure>
+				  			<%= image_tag @blog.blog_image_id.url if @blog.blog_image_id? %>
+				  		</figure>
+
+					    <p class="card-text" style="text-align: center;"><strong><span class="badge badge-info">title</span><%= @blog.title %></strong></p>
+
+					    <p class="card-text" style="padding-left: 50px">
+					    	<small><%= simple_format @blog.body %></small></p>
+
+					    <div class="card-footer">
+					    	<table>
+					    		<tr>
+					    			<td>
+							            <small class="text-muted">
+
+										   <%= @blog.created_at.strftime("%Y-%m-%d %H:%M") %> upload
+
+										   <% if @blog.user.id == current_user.id %>
+											
+										    <%= link_to '', edit_public_blog_path(@blog), class: "fas fa-edit" %>
+										   <% end %>
+										</small>
+									</td>
+									<td>
+								    <small>
+									  <i class="fa fa-comment"></i>
+									</small>
+									  <%= @blog.comments.count %>
+										<div class="comment-list bt style-2" id="comments">
+										  <div class="float-wrapper">
+										    <small class="comment-count"><%= @blog.comments.count %>件コメント</small>
+										  </div>
+								        </div>
+								    </td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+</div>
+
+<div class="row">
+    	<% if user_signed_in? %>
+    	    <div class="container mt-3">
+    	    	<div class="col-8">
+			        <div class="comment-create">
+			            <h3 class="text-left" style="color: white;">Create Comment</h3>
+			            <%= render partial: 'public/comments/form', locals: { comment: @comment, blog: @blog } %>
+			        </div>
+			    </div>
+	        </div>
+	    <% end %>
+	    <div class="container mt-3">
+	    	<div class="col-8">
+		        <li class="comment-create">
+		            <h3 class="text-left title" style="color: white;">Comment</h3>
+		        </li>
+		        <li id="comments_area">
+		            <%= render partial: 'public/comments/index', locals: { comments: @comments } %>
+		        </li>
+			</div>
+		</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,38 @@
+<style>
+        img{
+          width: 100%;
+          min-height: 250px;
+          padding: 0 5px 0 5px;
+        }
+
+        .container mt-5{
+          margin-top: 15%;
+        }
+
+        .blog-content{
+          margin-top: 100px;
+          margin-left: 20%;
+        }
+</style>
+
+<div class="page-info">
+  Blogs
+</div>
+
+<div class="container mt-5">
+  <%= form_tag("/public/blogs",method:"get",class: "form-inline my-2 my-lg-0") do %>
+    <input class="form-control mr-sm-2" type="text" name="search" placeholder="search for title">
+    <input type="submit" value="search" class="btn btn-outline-light">
+  <% end %>
+</div>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="container">
+      <div class="blog-content">
+            <%= render 'blogs', blogs: @blogs %>
+            <%= paginate @blogs2 %>
+      </div>
+    </div>
+  </div>
+</div>

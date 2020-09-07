@@ -1,68 +1,48 @@
-<body>
-	<div class="body">
-		<div class="container">
-			<% if flash[:notice] %>   <p><%= flash[:notice] %></p> <% end %> 
-			<div class="row">
-				<% if @newblog.errors.any? %>
-				  <div id="error_explanation">
-				 	<h2><%= pluralize(@newblog.errors.count, "error") %> prohibited this book from being saved:</h2>
-				 	<ul>
-				 		<% @newblog.errors.full_messages.each do |msg| %>
-				 		  <li><%= msg %></li>
-				        <% end %>
-				    </ul>
-				  </div>
-				  <% end %>
-				  <div class="col-xs-9">
-						<h2>Books</h2>
-						<table calss="table">
-							<thead>
-								<tr>
-									<th></th>
-									<th>Title</th>
-									<th>Opinion</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% @blogs.each do |blogs| %>
-								<tr>
-									<td>
-									  <%= link_to user_path(blog.user) do %>
-									  	<%= attachment_image_tag blog.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:'50x50' %>
-									  <% end %>
-								    </td>
-								    <td>
-									    <%= link_to blog_path(blog.id) do %>
-									   	<%= book.title %>
-									    <% end %>
-								    </td>
-									<td>
-										<%= book.body %>
-									</td>
-								<% if blog.favorited_by?(current_user) %>
-									<td>
-									    <%= link_to book_favorites_path(book), method: :delete do %>
-									    <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-									    <%= book.favorites.count %> いいね
-									    <% end %>
-									</td>
-									<% else %>
-									<td>
-									    <%= link_to book_favorites_path(book), method: :post do %>
-									    <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-									    <%= blog.favorites.count %> いいね
-									    <% end %>
-								    </td>
-									<td>
-									    <%= link_to "#{blog.blog_comments.count} コメント数:", blog_path(blog.id) %>
-									</td>
-								<% end %>
-								</tr>
-								<% end %>
-							</tbody>
-					    </table>
-		            </div>
-		    </div>
+<style>
+.container{
+	    	margin-top: 15%;
+	    	margin-left: 25%;
+	    }
+</style>
+
+
+<div class="page-info">
+	your blog
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-8">
+			<%= form_for [:public, @blog] do |f| %>
+				<% if @blog.errors.any? %>
+					<div id="error_explanation">
+					 	<h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+					 		<% @blog.errors.full_messages.each do |msg| %>
+					 		  <li><%= msg %></li>
+					        <% end %>
+					</div>
+				<% end %>
+
+				<div class="card-col-3">
+
+					<h3 calss="edit" style="background:linear-gradient(90deg,#0FF 0%,#0FF 0%,#F0F 25%,#0FF 100%); margin: 10px 0px 10px 0px;" align="center">Image</h3>
+		            <%= f.file_field :blog_image_id %>
+		            <%= f.hidden_field :blog_image_id_cache %>
+
+		            <h3 calss="edit" style="background:linear-gradient(90deg,#0FF 0%,#0FF 0%,#F0F 25%,#0FF 100%); margin: 10px 0px 10px 0px;" align="center">Title</h3>
+		            <%= f.text_field :title, :size =>'75x2' %>
+
+		            <h3 calss="edit" style="background:linear-gradient(90deg,#0FF 0%,#0FF 0%,#F0F 25%,#0FF 100%); margin: 10px 0px 10px 0px;" align="center">Body</h3>
+		            <%= f.text_area :body, :size =>'75x5' %>
+
+		        </div>
+
+		            <%= f.submit 'update', class: "btn btn-outline-success" %>
+
+		            <%= link_to 'delete', public_blog_path(@blog), method: :delete, "data-confirm" => "Are you sure？", class: "btn btn-outline-danger" %>
+			<% end %>
 		</div>
     </div>
-</body>
+</div>
+
+

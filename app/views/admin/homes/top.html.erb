@@ -1,0 +1,68 @@
+<style>
+   body{
+     margin: 0px;
+     padding: 0px;
+    }
+
+    #bg{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  #bg img{
+    height: 120vh;
+    width: 105%;
+    -webkit-filter:blur(20px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1;
+  }
+
+  #blackLayer{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,.2);
+    position: absolute;
+    z-index: 99;
+  }
+
+  #main{
+    width: 50%;
+    background-color: black;
+    border-radius: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 999;
+  }
+
+  #image img{
+    height: 280px;
+    width: 100%;
+    margin-top: -5px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+
+</style>
+
+<body>
+  <div id="bg">
+      <div id="backLayer">
+         <img src="<%= asset_path('shutterstock_1197309358.jpg') %>" alt=""/>
+    </div>
+  </div>
+  <div id="main">
+      <div id="image">
+         <img src="<%= asset_path('1.jpg') %>" alt=""/>
+      </div>
+  </div>
+</body>

@@ -1,12 +1,44 @@
+<style>
+        img{
+          width: 100%;
+          min-height: 250px;
+          padding: 0 5px 0 5px;
+        }
+
+        .container mt-5{
+          margin-top: 15%;
+        }
+
+        .blog-content{
+          margin-top: 40px;
+          margin-left: 20%;
+        }
+</style>
+
+<div class="page-info">
+  Blogs
+</div>
+
 <div class="container mt-5">
+  <%= form_tag("/public/blogs",method:"get",class: "form-inline my-2 my-lg-0") do %>
+    <input class="form-control mr-sm-2" type="text" name="search" placeholder="search for title">
+    <input type="submit" value="search" class="btn btn-outline-light">
+  <% end %>
+</div>
+
+
+<div class="container mt-3">
   <div class="row">
     <div class="col-3">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-turbolinks = "false">
-        新規投稿
+      <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal" data-turbolinks = "false">
+        Create
       </button>
     </div>
-    <div class="col-9">
-      <%= render 'blogs', blogs: @blogs %>
+    <div class="container">
+      <div class="blog-content">
+            <%= render 'blogs', blogs: @blogs %>
+            <%= paginate @blogs2 %>
+      </div>
     </div>
   </div>
 </div>
@@ -16,15 +48,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+        <% if @blog.errors.any? %>
+          <h2><%= pluralize(@blog.errors.count, "error") %>prohibited this blog from being saved:</h2>
+          <% @blog.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        <% end %>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <%= form_for [:public, @blog], remote: true do |f| %>
         <div class="modal-body">
 
           <div class="form-group">
-            <%= f.file_field :blog_image %>
+            <%= f.file_field :blog_image_id %>
+            <%= f.hidden_field :blog_image_id_cache %>
           </div>
 
           <div class="form-group">
@@ -36,6 +76,16 @@
             <%= f.label :body, "ブログ" %>
             <%= f.text_area :body, class: "form-control" %>
           </div>
+
+          <div class="form-group">
+            <%= f.label :genre, 'カテゴリ' %>
+            <%= f.collection_check_boxes(:genre_ids, Genre.all, :id, :name) do |genre| %> 
+              <%= genre.label do %>
+                <%= genre.check_box %>
+                <%= genre.text %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
 
         <div class="modal-footer">
@@ -46,4 +96,3 @@
     </div>
   </div>
 </div>
-

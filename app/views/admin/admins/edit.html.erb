@@ -1,0 +1,86 @@
+<style>
+.container{
+	margin-top: 15%;
+	margin-left: 20%;
+}
+
+i{
+	color: white;
+}
+
+.card{
+	margin-top: 200px;
+	margin-left: 300px;
+}
+
+p{
+	color: white;
+}
+
+</style>
+
+
+<div class="page-info">
+	User Edit
+</div>
+
+<div class="container">
+	<div class="row">
+	    <div class="col-8">
+		    <%= form_for [:admin, @user], url:admin_admin_path(@user) do |f| %>
+
+			    <% if @admin.errors.any? %>
+					<div id="error_explanation">
+					 	<h2><%= pluralize(@admin.errors.count, "error") %> prohibited this user from being saved:</h2>
+					 		<% @admin.errors.full_messages.each do |msg| %>
+					 		  <li><%= msg %></li>
+					        <% end %>
+					</div>
+				<% end %>
+
+				<div class="card-col-3">
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">User ID</h3>
+					    <span class="icon is-left">
+			              <p><i class="fas is-small fa-user"></i><%= @user.id %></p>
+		                </span>
+
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Profile Image</h3>
+			        <p><i class="far fa-images"></i><%= f.file_field :profile_image %></p>
+
+
+				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">User Name</h3>
+				    <span class="icon is-left">
+		              <i class="fas is-small fa-user"></i>
+		            </span>
+					<p><%= f.text_field :username %></p>
+
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Phone Number</h3>
+				    <span class="icon is-left">
+		              <i class="fas is-small fa-phone"></i>
+		            </span>
+				    <p><%= f.text_field :phone_number%></p>
+
+				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Email</h3>
+				    <span class="icon is-left">
+		              <i class="fas is-small fa-envelope"></i>
+		            </span>
+				    <p><%= f.text_field :email %></p>
+
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">User Status</h3>
+				    <span class="icon is-left">
+		              <i class="fas is-small fa-user"></i>
+		            </span>
+					<%= f.radio_button :flag, true %>
+					<%= f.label :flag, '退会', value: true %>
+					<%= f.radio_button :flag, false %>
+					<%= f.label :flag, '有効', value: false %>
+				</div>
+				<p>
+		            <%= f.submit "編集を保存する", class: "btn btn-outline-success" %>
+		            <%= link_to "戻る", admin_admin_path, class: "btn btn-outline-primary" %>
+		        </p>
+            <% end %>
+		</div>
+    </div>
+</div>
+

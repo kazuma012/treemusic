@@ -1,8 +1,32 @@
-<div class="container">
-	<h1>ジャンル編集</h1>
-		<%= form_for [:admin,@genre] do |f| %>
-			<%= f.label :ジャンル %>
-			<%= f.text_field :name %>
-			<%= f.submit '変更を保存する', class: "btn btn-primary" %>
-		<% end %>
+<style>
+.box{
+    width: 400px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919;
+    text-align: center;
+    box-shadow: 0px 5px 35px #000;
+}
+
+
+p{
+	color: white;
+}
+</style>
+
+<div class="page-info">
+	edit genre
+</div>
+
+<div class="box">
+	<p>
+		内容を変更する場合新しく入力してください
+	</p>
+	<%= form_for [:admin,@genre] do |f| %>
+		<%= f.text_field :name, placeholder: "edit genre name" %>
+		<%= f.submit '変更を保存する', class: "btn btn-outline-primary btn-sm" %>
+	<% end %>
 </div>

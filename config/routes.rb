@@ -1,33 +1,37 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: { sessions: 'admin/admins/sessions', 
-									  	registrations: 'admin/admins/registrations', 
-									  	passwords: 'admin/admins/passwords' }
+  devise_for :admins, controllers: { sessions: 'admin/admins/sessions' }
   devise_for :users, controllers: { sessions: 'public/users/sessions',
                                        registrations: 'public/users/registrations', 
                                        passwords: 'public/users/passwords' }
+  namespace :admin do
+    get 'homes/top'
+  end
+
   namespace :public do
     get 'home/top'
-    get 'blogs/random',to:"blogs#random"
-    get 'search',to:"blogs#search"
     get 'home/about'
+    get 'home/terms'
   end
   root 'public/home#top'
   namespace :public do
-  	resource :user
+  	resources :users
+    get "search" => "users#search"
   	get 'users/quit/:id' => 'users#quit'
     put "/users/:id/hide" => "users#hide", as: 'users_hide'
-    resources :genres do
-    	get :search, on: :collection
+    resources :tracks do
+      resource :favorites, only: [:create, :destroy]
     end
-    resources :tracks
     resources :blogs do
       resource :favorites, only: [:create, :destroy]
-      resources :blogs_comments, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
   end
 
   namespace :admin do
-    get 'homes/top'
+    resources :admins
+    get "search" => "users#search"
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :blogs, only: [:index, :show]
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,52 @@
+<div class="alert alert-primary" role="alert">
+	<div class="title">
+		<div align="center">
+			<h1 class="title">
+				YOUR SONG
+			</h1>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<% if flash[:notice] %>   <p><%= flash[:notice] %></p> <% end %> 
+	<div class="row">
+		<div class="col-8">
+			<%= form_for [:public, @track] do |f| %>
+				<% if @track.errors.any? %>
+					<div id="error_explanation">
+					 	<h2><%= pluralize(@track.errors.count, "error") %> prohibited this book from being saved:</h2>
+					 	<ul>
+					 		<% @track.errors.full_messages.each do |msg| %>
+					 		  <li><%= msg %></li>
+					        <% end %>
+					    </ul>
+					</div>
+				<% end %>
+
+				<div class="card-col-3">
+
+					<h3 calss="edit" style="background-color: #fff; margin: 10px 0px 10px 0px;" align="center">Image</h3>	
+		            <%= f.file_field :track_image_id %>
+		            <%= f.hidden_field :track_image_id_cache %>
+
+		            <h3 calss="edit" style="background-color: #fff; margin: 10px 0px 10px 0px;" align="center">Audio</h3>
+		            <%= f.file_field :track_audio_id %>
+		            <%= f.hidden_field :track_audio_id_cache %>
+
+
+		            <h3 calss="edit" style="background-color: #fff; margin: 10px 0px 10px 0px;" align="center">Title</h3>
+		            <%= f.text_field :title, :size =>'75x2' %>
+
+		            <h3 calss="edit" style="background-color: #fff; margin: 10px 0px 10px 0px;" align="center">Body</h3>               
+		            <%= f.text_area :description, :size =>'75x5' %>
+
+		        </div>
+
+		            <%= f.submit "update", class: "btn btn-success" %>
+
+		            <%= link_to '', public_track_path(@track), method: :delete, "data-confirm" => "Are you sure？", class: "fas fa-trash-alt" %>
+			<% end %>
+		</div>
+    </div>
+</div>

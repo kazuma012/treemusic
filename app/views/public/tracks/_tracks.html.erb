@@ -1,0 +1,56 @@
+<div class="tracks">
+	<% @tracks.each do |track| %>
+	    <div class="card mb-1">
+		  	<div class="card-body">
+		  		<p>
+		  			<a href="javascript:void();" class="album-poster" data-switch="">
+		  			<%= image_tag track.track_image_id.url if track.track_image_id? %>
+		  		    </a>
+		  		</p>
+
+		  		<p>
+		  			<%= audio_tag track.track_audio_id.url if track.track_audio_id? %>
+		  		</p>
+
+		  		<p class="list-group-item">
+		  			<span class="badge badge-pill badge-info">Song</span><br>
+		  			<%= link_to public_track_path(track) do %>
+		  			  <%= track.title %>
+		  			<% end %>
+		  		</p>
+
+		  		<% if current_user.done_favorited?(track) %>
+					<p>
+					    <%= link_to public_track_favorites_path(track), method: :delete do %>
+						    <i class="far fa-heart"></i>
+						    <%= blog.favorites.count %>いいね
+					    <% end %>
+					</p>
+					<% else %>
+					<p>
+					    <%= link_to public_track_favorites_path(track), method: :post do %>
+						    <i class="far fa-heart"></i>
+						    <%= blog.favorites.count %>いいね
+					    <% end %>
+				    </p>
+			    <% end %>
+
+		  		<p class="card-footer">
+			        <small class="text-muted">
+			      	  <i class="far fa-calendar-alt"></i>
+			      	  <%= track.created_at.strftime("%Y-%m-%d %H:%M") %>
+			      	  Artist <%= track.user.username %>
+			        </small>
+
+			        <% if track.user_id == current_user.id %>
+
+			          <%= link_to '', public_track_path(track), class: "fas fa-shoe-prints" %>
+
+				      <%= link_to '', edit_public_track_path(track), class: "fas fa-edit" %>
+				    <% end %>
+				</p>
+		  	</div>
+		</div>
+	<% end %>
+</div>
+

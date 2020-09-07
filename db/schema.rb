@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_11_183100) do
+ActiveRecord::Schema.define(version: 2020_08_30_094137) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,10 +35,9 @@ ActiveRecord::Schema.define(version: 2020_08_11_183100) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "blog_comments", force: :cascade do |t|
-    t.text "comment"
-    t.integer "user_id"
+  create_table "blog_genres", force: :cascade do |t|
     t.integer "blog_id"
+    t.integer "genre_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,9 +51,16 @@ ActiveRecord::Schema.define(version: 2020_08_11_183100) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.integer "user_id"
+    t.integer "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "track_id"
     t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -62,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_183100) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
+    t.integer "blog_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -75,8 +82,11 @@ ActiveRecord::Schema.define(version: 2020_08_11_183100) do
   end
 
   create_table "tracks", force: :cascade do |t|
+    t.string "track_audio_id"
     t.string "track_image_id"
-    t.string "name"
+    t.string "title"
+    t.text "description"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -87,14 +97,12 @@ ActiveRecord::Schema.define(version: 2020_08_11_183100) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.string "last_name"
-    t.string "first_name"
-    t.string "sub_last_name"
-    t.string "sub_first_name"
+    t.string "username"
     t.string "phone_number"
     t.string "profile_image_id"
     t.text "profile"
     t.boolean "flag", default: false, null: false
+    t.boolean "accepted", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

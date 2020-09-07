@@ -1,3 +1,215 @@
-<div class="box">
-	<h5>hellow</h5>
-</div>
+<style>
+table{
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	font-family: 'Poppins', sans-serif;
+}
+
+.page-info{
+position: absolute;
+top: 15%;
+left: 50%;
+transform: translate(-50%,-50%);
+color: #1670f0;
+padding: 30px 60px;
+font-size: 30px;
+letter-spacing: 2px;
+text-transform: uppercase;
+text-decoration: none;
+box-shadow: 0 20px 50px rgba(0,0,0,.5);
+overflow: hidden;
+}
+
+.page-info:before{
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  bottom: 2px;
+  width: 40%;
+  background: rgba(255,255,255,0.05);
+}
+
+.contrainer{
+	width: 1000px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.box{
+	position: relative;
+	margin-left: 20px;
+	width: 300px;
+	height: 400px;
+	background: #000;
+	box-shadow:  0 30px 30px rgba(0,0,0,.5)
+}
+
+.box .imgBx{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.box .imgBx img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: 0.5s;
+}
+
+.box:hover .imgBx img{
+	opacity: 0;
+}
+
+.box .content {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    width: 80%;
+    height: 60px;
+    background: #336699;
+    transition: 0.5s;
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.box:hover .content{
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+.box .content h3{
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+}
+
+.box .content p{
+	margin: 10px 0 0;
+	padding: 0;
+	opacity: 0;
+	line-height: 1.2em;
+	transition: 0.5s;
+	text-align: justify;
+	color: black;
+}
+
+.box:hover .content p{
+	opacity: 1;
+	transition-delay: 0.5s;
+	color: black;
+}
+</style>
+
+<body>
+	<div class="page-info">
+		About
+	</div>
+	<table>
+		<div class="container">
+			<tr>
+				<td>
+					<div class="box">
+						<div class="imgBx">
+							<img src="<%= asset_path('shutterstock_393698488.jpg') %>" alt=""/>
+						</div>
+						<div class="content">
+							<h3>サイトについて...</h3>
+							<p>様々な音楽の情報をブログを通して
+							共有し、気になったブログにコメント
+							を残してみよう！</p>
+						</div>
+					</div>
+				</td>
+	            <td>
+					<div class="box">
+						<div class="imgBx">
+							<img src="<%= asset_path('shutterstock_755458477.jpg') %>" alt=""/>
+						</div>
+						<div class="content">
+							<h3>利用上の注意...</h3>
+							<p>特定の人物や企業に対する誹謗中傷、
+							卑猥な内容を含むブログ・コメントの書き込みはご遠慮ください。
+							また不確かな情報を元に閲覧者を混乱させるような書き込みもご遠慮ください。
+							<br>
+							詳しくは<a href="/public/home/terms">こちら</a>をご確認ください。
+							</p>
+						</div>
+					</div>
+	            </td>
+	            <td>
+					<div class="box">
+						<div class="imgBx">
+							<img src="<%= asset_path('shutterstock_1447718978.jpg') %>" alt=""/>
+						</div>
+						<div class="content">
+							<h3>開発者からの案内...</h3>
+							<p>ご利用いただき誠にありがとうございます。
+							今後の機能拡張について先にご案内いたします。<br>
+							<br>
+						    １.楽曲（mp3,wave式)の投稿とストリーミング<br>
+						    ２.フォロー者の新着ブログをマイページにてお届け<br>
+						    ３.相互フォローとチャット機能<br>
+						    ４.より利便性のある検索機能<br>
+						    ５.音楽関連情報を運営側からアナウンス<br>
+						    ６.音楽関連の正規物販販売<br>
+						    ７.動画投稿・ライブ配信機能<br>
+						    <br>
+						    今後とも快適なサービスを実現できるよう精進いたしますので何とぞよろしくお願い致します。
+						    </p>	
+						</div>
+					</div>
+				</td>
+			</tr>
+		</div>
+	</table>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

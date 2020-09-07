@@ -1,0 +1,35 @@
+<div class="blogs">
+	<div class="card">
+	  	<div class="card-body">	
+	  		<p>
+	  			<%= image_tag @track.track_image_id.url if @track.track_image_id? %>
+	  		</p>
+
+	  		<p>
+	  			<%= audio_tag @track.track_audio_id.url if @track.track_audio_id? %>
+	  		</p>
+
+		    <p class="card-text">
+		    	<span class="badge badge-pill badge-info">Song</span><br>
+		    	<%= @track.title %>
+		    </p>
+
+		    <p class="card-text">
+		    	<span class="badge badge-pill badge-info">Description</span><br>
+		    	<small><%= simple_format @track.description %></small>
+		    </p>
+
+		    <div class="card-footer">
+	           <small class="text-muted">
+
+				   <%= @track.created_at.strftime("%Y-%m-%d %H:%M") %> upload
+
+				   <% if @track.id == current_user.id %> 
+					
+				    <%= link_to '', edit_public_track_path(@track), class: "fas fa-edit" %>
+				   <% end %>
+				</small>
+			</div>
+		</div>
+	</div>
+</div>

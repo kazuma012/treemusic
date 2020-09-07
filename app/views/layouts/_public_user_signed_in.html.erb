@@ -1,0 +1,26 @@
+<li class="nav-item active">
+  <a class="nav-link" href="/public/home/top"><strong>Home</strong> <span class="sr-only">(current)</span></a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="/public/home/about"><strong>about</strong></a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="/public/blogs"><strong>blogs</strong></a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="/public/users"><strong>users</strong></a>
+</li>
+
+<li class="nav-item">
+  <a class="nav-link" href="/users/sign_out" data-method="delete"><strong>Log out</strong></a>
+</li>
+
+<li class="nav-left" style="padding-left: 200px;">
+  <%= form_tag("/public/users",method:"get",class: "form-inline my-2 my-lg-0") do %>
+    <input class="form-control mr-sm-2" type="text" name="search" placeholder="search for username">
+    <input type="submit" value="search" class="btn btn-outline-light">
+  <% end %>
+</li>

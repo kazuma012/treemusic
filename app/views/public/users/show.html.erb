@@ -1,38 +1,251 @@
-<div class="container">
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-       <h3><span style="background-color:#CCCCCC;">マイページ</span></h3>
-    </div>
-    <div class="col-xs-10">
-	<h3><strong>登録情報</strong></h3>
-	<table>
-		<tr>
-			<td>
-				<%= link_to "編集する", edit_public_user_path, class: "btn btn-primary" %>
+<style>
+    img{
+          width: 100%;
+          min-height: 250px;
+        }
 
-				<%= link_to "パスワードを変更する", edit_user_password_path, class: "btn btn-primary" %>
-	        </td>
-	    </tr>
-	</table>
-	<table>
-		<div class="table table-bordered">
-			<div class="table-title">
-				<h4 class="table-title">氏名
-					<%= @user.last_name %>  <%= @user.first_name %>
-				</h4>
+.box{
+	position: relative;
+	margin-top: 200px;
+	margin-left: 33%;
+	width: 400px;
+	height: 500px;
+	background: #000;
+	box-shadow:  0 30px 30px rgba(0,0,0,.5)
+}
 
-			    <h4 class="table-title">カナ
-			    	<%= @user.sub_last_name%>  <%= @user.sub_first_name %>
-			    </h4>
+.box .imgBx{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
 
-			    <h4 class="table-title">電話番号
-                    <%= @user.phone_number %>
-			    </h4>
-			    <h4 class="table-title">メールアドレス
-			    	<%= @user.email %>
-			    </h4>
-			</div>
+.box .imgBx img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: 0.5s;
+}
+
+.box:hover .imgBx img{
+	opacity: 0;
+}
+
+.box .content {
+    position: absolute;
+    bottom: 20px;
+    left: 10%;
+    width: 80%;
+    height: 60px;
+    background: #fff;
+    transition: 0.5s;
+    overflow: hidden;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.box:hover .content{
+	width: 100%;
+	height: 100%;
+	bottom: 0;
+	left: 0;
+}
+
+.box .content h3{
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+}
+
+.box .content p{
+	margin: 10px 0 0;
+	padding: 0;
+	opacity: 0;
+	line-height: 1.2em;
+	transition: 0.5s;
+	text-align: justify;
+	color: black;
+}
+
+.box:hover .content p{
+	opacity: 1;
+	transition-delay: 0.5s;
+	color: black;
+}
+
+.container{
+	margin-top: 15%;
+}
+
+.card{
+	background: #fff;
+	margin-top: 20px;
+}
+
+h3{
+	text-align: center;
+}
+
+.profile{
+	margin: 2em 0;
+	position: relative;
+	padding: 0.5em 1.5em;
+	border-top: solid 2px black;
+	border-bottom: solid 2px black;
+}
+
+.profile:before, .profile:after{
+	content: '';
+	position: absolute;
+	top: -10px;
+	width: 2px;
+	height: -webkit-calc(100% + 20px);
+	height: calc(100% + 20px);
+	background-color: black;
+}
+
+.profile:before {left: 10px;}
+.profile:after {right: 10px;}
+.profile p{
+	margin: 0;
+	padding: 0;
+}
+
+</style>
+
+<div class="main-container">
+	<div class="page-info">
+		MY PROFILE
+	</div>
+
+	<div class="box">
+		<div class="imgBx">
+			<%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %>
 		</div>
-	</table>
+		<div class="content">
+			<h3><%= @user.username %>'s profile</h3>
+			<div class="card">
+				<p class="card-text">
+			  		<% if @user.profile? %>
+					    <div class="profile">
+					    	<p><%= @user.profile %></p>
+					    </div>
+					<% else %>
+					    <div class="profile">
+					        <p>
+					        <%= @user.username %>です。<br>
+					        よろしくお願いします。
+					        </p>
+					    </div>
+					<% end %>
+				</p>
+
+                <ul class="list-group list-group-flush">
+					<li class="list-group-item">
+						<span class="icon is-left">
+			              <i class="fas is-small fa-user"></i>
+			            </span>氏名:
+						<%= @user.username %>
+					</li>
+
+	                <% if @user.id == current_user.id %>
+
+					    <li class="list-group-item">
+				            <span class="icon is-left">
+				              <i class="fas is-small fa-user"></i>
+				            </span>電話番号:
+		                    <%= @user.phone_number %>
+					    </li>
+
+					    <li class="list-group-item">
+					    	<span class="icon is-left">
+				              <i class="fas is-small fa-envelope"></i>
+				            </span>メールアドレス:
+					    	<%= @user.email %>
+					    </li>
+
+					    <% if @user.id == current_user.id %>
+							<%= link_to "edit", edit_public_user_path, class: "btn btn-outline-success" %>
+
+							<%= link_to "password", edit_user_password_path, class: "btn btn-outline-info" %>
+						<% end %>
+
+						<%= link_to "back", public_users_path, class: "btn btn-outline-primary" %>
+			        <% end %>
+			    </ul>
+		    </div>
+		</div>
+	</div>
+
+	<div class="container mt-5">
+		<div class="row">
+			<% @user.blogs.each do |blog| %>
+				<div class="col-5">
+				    <div class="card mb-5">
+						<div class="card-body">
+						    <%= image_tag blog.blog_image_id.url if blog.blog_image_id? %>
+
+						    <%= blog.title %>
+
+	                        <div class="card-footer">
+			                    <small class="text-muted">
+			      	               <i class="far fa-calendar-alt"></i>
+						           <%= blog.created_at.strftime("%Y-%m-%d %H:%M") %> upload
+						        </small>
+
+								<%= link_to '', public_blog_path(blog), class: "fas fa-shoe-prints" %>
+
+								<% if @user.id == current_user.id %>
+
+								   <%= link_to '', edit_public_blog_path(blog), class: "fas fa-edit" %>
+								   <%= link_to '', public_blogs_path(blog), method: :delete, "data-confirm" => "Are you sure？", class: "fas fa-trash-alt" %>
+							    <% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
 </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

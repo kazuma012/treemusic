@@ -13,7 +13,7 @@
     <title>treemusic</title>
     <style>
 body{
-          background-color: #f7f7f7;
+          background-color: #34495e;
         }
 
         img{
@@ -48,6 +48,7 @@ body{
            margin-bottom: 34px;
            border-bottom: 4px solid #e6e6e6;
            padding-bottom: 15px;
+           color: white;
         }
 
         p{
@@ -78,113 +79,87 @@ body{
     </style>
   </head>
   <body>
+    <div class="alert alert-info" role="alert">
+      <div align="center">
+        <h1 class="title">
+          TRACKS
+        </h1>
+      </div>
+    </div>
     <div class="main">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
             <h3>New Releasess</h3>
           </div>
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="1">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>Artist: martin garrix</h4>
-            <h4>Song: bensound-summer</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="2">
-              <image src="/image/shutterstock_369109598.jpg" alt="" >
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="3">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="4">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="5">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="6">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="7">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="col-md-3">
-            <a href="javascript:void();" class="album-poster" data-switch="8">
-              <image src="/image/shutterstock_369109598.jpg" alt="">
-            </a>
-            <h4>martin garrix</h4>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12">
-              <h3>comming soon</h3>
-            </div>
-            <div class="col-md-2">
-              <a href="javascript:void();" class="album-poster">
-                <image src="/image/shutterstock_369109598.jpg" alt="">
-              </a>
-              <h4>martin garrix</h4>
-            </div>
-
-            <div class="col-md-2">
-              <a href="javascript:void();" class="album-poster">
-                <image src="/image/shutterstock_369109598.jpg" alt="">
-              </a>
-              <h4>martin garrix</h4>
-            </div>
-
-            <div class="col-md-2">
-              <a href="javascript:void();" class="album-poster">
-                <image src="/image/shutterstock_369109598.jpg" alt="">
-              </a>
-              <h4>martin garrix</h4>
-            </div>
-
-            <div class="col-md-2">
-              <a href="javascript:void();" class="album-poster">
-                <image src="/image/shutterstock_369109598.jpg" alt="">
-              </a>
-              <h4>martin garrix</h4>
-            </div>
-
-            <div class="col-md-2">
-              <a href="javascript:void();" class="album-poster">
-                <image src="/image/shutterstock_369109598.jpg" alt="">
-              </a>
-              <h4>martin garrix</h4>
-            </div>
-
-          </div>
         </div>
       </div>
     </div>
 
+    <div class="container mb-5">
+      <div class="row">
+        <div clsss="col-4">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-turbolinks = "false">
+            Create
+          </button>
+        </div>
+        <div class="col-4 mb-5">
+          <%= render 'tracks', tracks: @tracks %>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">新規投稿</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          
+          <% if @track.errors.any? %>
+            <div class="alert alert-danger" role="alert">
+              <h2><%= pluralize(@track.errors.count, "error") %>prohibited this track from being saved:</h2>
+            </div>
+            <% @track.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          <% end %>
+
+                <%= form_for [:public, @track], remote: true do |f| %>
+                  <div class="modal-body">
+
+                    <div class="form-group">
+                      <%= f.label :track_image %>
+                      <%= f.file_field :track_image_id %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :audio_file %>
+                      <%= f.file_field :file %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :title, "Track Name" %>
+                      <%= f.text_field :title, class: "form-control" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= f.label :description, "Description" %>
+                      <%= f.text_area :description, class: "form-control" %>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+                    <%= f.submit "投稿する", class: "btn btn-primary" %>
+                  </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
 
     <div id="aplayer"></div>
     <!-- Optional JavaScript -->
@@ -196,10 +171,9 @@ body{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aplayer/1.10.1/APlayer.min.js"></script>
 
     <script>
-
-         $(".album-poster").on('click', function(e){
+      $(".album-poster").on('click', function(e){
              var dataSwitchId = $(this).attr('data-switch');
-
+             console.log(dataSwitchId);
              ap.list.switch(dataSwitchId);
 
              ap.play();
@@ -209,12 +183,22 @@ body{
 
          const ap = new APlayer({
               container: document.getElementById('aplayer'),
-              listFolded : true,
+              mini: false,
+              autoplay: false,
+              theme: '#FADFA3',
+              loop: 'all',
+              order: 'random',
+              preload: 'auto',
+              volume: 0.7,
+              mutex: true,
+              listFolded: true,
+              listMaxHeight: 90,
+              lrcType: 3,
               audio: [{
-                  name: 'Bensound Summer',
-                  artist: 'No name',
+                  name: '',
+                  artist: 'martin garrix',
                   url: '/mp3/bensound-summer.mp3',
-                  cover: '/image/shutterstock_369109598.jpg'
+                  cover: '<%= image_tag @track.track_image_id.url if @track.track_image_id? %>'
               }]
           });
     </script>

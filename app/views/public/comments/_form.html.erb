@@ -1,0 +1,19 @@
+<style>
+p{
+	margin-left: 5px;
+}
+</style>
+<%= form_with(model: [@blog, @comment], url: public_blog_comments_path(@blog) ) do |f| %>
+	<table>
+		<td>
+			<p>
+	           <%= f.text_area :content, class: "input-mysize" %>
+	        </p>
+	    </td>
+	    <td>
+	    	<p>
+	           <%= f.submit "submit", class: "btn btn-outline-light" %>
+	       </p>
+	    </td>
+	</table>
+<% end %>

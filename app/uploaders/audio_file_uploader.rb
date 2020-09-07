@@ -52,4 +52,12 @@ class AudioFileUploader < CarrierWave::Uploader::Base
       "#{super.chomp(File.extname(super))}.mp3"
     end
   end
+
+  version :wav do
+   process :convert => [{output_format: :wav}]
+
+   def full_filename(for_file)
+     "#{super.chomp(File.extname(super))}.wav"
+   end
+  end
 end

@@ -1,25 +1,32 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+  def index
+      @users = User.search(params[:search])
+      @users2 = User.page(params[:page])
+  end
 	
   def show
-      @user = current_user
+      @user = User.find(params[:id])
   end
 
   def hide
   	  @user = current_user
   	  @user.update(flag: true)
   	  reset_session
-  	  flash[:notice] = "ありがとうございました。またのご利用をこころよりお待ちしております。"
-  	  redirect_to root_path
+  	  redirect_to root_path, notice: 'Thank you for using this app'
   end
 
   def edit
-  	  @user = current_user
+  	  @user = User.find(params[:id])
+      if @user != current_user
+       redirect_to public_users_path, alert: 'Invalid Access'
+      end
   end
 
   def update
-      @user = current_user
+      @user = User.find(params[:id])
       if @user.update(user_params)
-         redirect_to public_user_path(@user.id)
+         redirect_to public_users_path(@user.id), notice: 'Update succsessfuly'
       else
          render 'edit'
       end
@@ -32,18 +39,17 @@ class Public::UsersController < ApplicationController
   private
   
   def user_params
-  	  params.require(:user).permit(:last_name, 
-                                    :first_name, 
-                                    :sub_last_name, 
-                                    :sub_first_name, 
+  	  params.require(:user).permit(:username, 
                                     :email,  
-                                    :phone_number)
+                                    :phone_number,
+                                    :profile_image,
+                                    :profile)
   end
   
   def ensure_corrent_user
   	  @user = User.find_by(id: params[:id])
   	  if @user.id != current_user.id
-  	  	 redirect_to user_path(current_user.id)
+  	  	 redirect_to public_users_path(current_user.id)
   	  end
   end
 end

@@ -1,39 +1,60 @@
+<style>
+.container{
+	    	margin-top: 15%;
+	    	margin-left: 20%;
+	    }
+i{
+	color: white;
+}
+</style>
+
+<dic class="page-info">
+	My profile
+</dic>
+
 <div class="container">
-<div class="row">
-	<div class="col-xs-10 col-xs-offset-1">
-       <h3>
-       	<span style="background-color:#CCCCCC;">登録情報編集</span>
-       </h3>
-    </div>
-    <div class="col-xs-10">
-		<%= form_for [:public, @user] do |f| %>
-		<% if @user.errors.any? %>
-		  <div id="error_explanation">
-		 	<h2><%= pluralize(@user.errors.count, "個") %> のエラーがあります。:</h2>
-		 		<% @user.errors.full_messages.each do |msg| %>
-		 		  <li><%= msg %></li>
-		        <% end %>
-		  </div>
-		<% end %>
+	<div class="row">
+	    <div class="col-8">
+			<%= form_for [:public, @user] do |f| %>
+				<% if @user.errors.any? %>
+					<div id="error_explanation">
+					 	<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+					 		<% @user.errors.full_messages.each do |msg| %>
+					 		  <li><%= msg %></li>
+					        <% end %>
+					</div>
+				<% end %>
+                <div class="card-col-3">
+				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Image</h3>
+				    <%= f.file_field :profile_image %>
 
-		    <h3 calss="edit">名前</h3>
-			<%= f.text_field :last_name %> <%= f.text_field :first_name %>
+				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Name</h3>
+				    <span class="icon is-left">
+		              <i class="fas is-small fa-user"></i>
+		            </span>
+					<%= f.text_field :username %>
 
-			<h3 calss="edit">フリガナ</h3>
-			<%= f.text_field :sub_last_name %> <%= f.text_field :sub_first_name %>
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Email</h3>
+					<span class="icon is-left">
+		              <i class="fas is-small fa-envelope"></i>
+		            </span>
+					<%= f.text_field :email %>
 
-			<h3 calss="edit">メールアドレス</h3>
-			<%= f.text_field :email %>
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Phone Number</h3>
+					<span class="icon is-left">
+		              <i class="fas is-small fa-phone"></i>
+		            </span>
+					<%= f.text_field :phone_number%>
 
-			<h3 calss="edit">電話番号(ハイフンなし)</h3>
-			<%= f.text_field :phone_number%>
-			
-			<p>
-			    <%= f.submit "編集を保存する", class: "btn btn-success" %>
-		    	<%= link_to "退会する", public_path(current_user), class: "btn btn-danger" %>
-		    </p>
-
-		<% end %>
-    </div>
-</div>
+					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Profile</h3>
+					<%= f.text_area :profile, :size =>'74x5' %>
+				</div>
+					
+					<p>
+					    <%= f.submit "Update", class: "btn btn-outline-success" %>
+				    	<%= link_to "Quit", public_path(current_user), class: "btn btn-outline-danger" %>
+			        </p>
+			<% end %>
+	    </div>
+	</div>
 </div>

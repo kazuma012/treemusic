@@ -3,7 +3,7 @@ class Admin::AdminsController < ApplicationController
 
   def index
       @admin = current_admin
-      @users = User.all
+      @users = User.search(params[:search])
       @users2 = User.page(params[:page]).per(8).reverse_order
   end
 
@@ -29,16 +29,7 @@ class Admin::AdminsController < ApplicationController
   private
   
   def user_params
-      params.require(:user).permit(:last_name, 
-                                    :first_name, 
-                                    :sub_last_name, 
-                                    :sub_first_name, 
-                                    :email, 
-                                    :password, 
-                                    :address, 
-                                    :postal_code, 
-                                    :phone_number,
-                                    :flag)
+      params.require(:user).permit(:username, :email, :phone_number, :flag)
   end
   
   def if_not_admin

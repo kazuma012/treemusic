@@ -1,94 +1,169 @@
-<section class="hero is-info">
-  <div class="hero-body">
-    <div class="container">
-      <h2 class="title">
-        新規会員登録
-      </h2>
-    </div>
-  </div>
-</section>
+<style>
+body{
+    margin: 0;
+    padding : 0;
+    font-family: sans-serif;
+  }
 
-<section class="section">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="colum is-5">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+  .box{
+    width: 400px;
+    padding: 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #191919;
+    text-align: center;
+    box-shadow: 0px 5px 35px #000;
+  }
+  .box h1{
+    color: white;
+    text-transform: uppercase
+    font-weight: 500px;
+  }
+
+  .box input[type = "username"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+
+  .box input[type = "username"]:focus{
+    width: 280px;
+    border-color: #2ecc71;
+  }
+
+
+  .box input[type = "text"],.box input[type = "email"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+  .box input[type = "text"]:focus,.box input[type = "email"]:focus{
+    width: 280px;
+    border-color: #2ecc71;
+  }
+  .box input[type = "text"],.box input[type = "phonenumber"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+  .box input[type = "text"]:focus,.box input[type = "phonenumber"]:focus{
+    width: 280px;
+    border-color: #2ecc71;
+  }
+  .box input[type = "text"],.box input[type = "password"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+  }
+  .box input[type = "text"]:focus,.box input[type = "password"]:focus{
+    width: 280px;
+    border-color: #2ecc71;  
+  }
+  .box input[type = "submit"]{
+    border: 0;
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 14px 40px
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .box input[type = "submit"]:hover{
+    background: #2ecc71;
+  }
+  .btn{
+    border: 0;
+    background: none;
+    margin: 10px auto;
+    text-align: center;
+    border: 2px solid #0099FF;
+    padding: 14px 40px
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .btn:hover{
+    background: #0099FF;
+  }
+
+</style>
+
+<body>
+  <div class="page-info">
+    sign up
+  </div>
+
+  <div class="box">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 　
-        <div class="field">
-          <%= f.label :名前%><br />
-          <p class="control has-icons-left">
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "name", placeholder: "姓" %>
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "name", placeholder: "名" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p> 
-        </div>
+          <%= f.text_field :username, autofocus: true, autocomplete: "name", placeholder: " \uf007 Username", class: 'fa' %>
 
-        <div class="field">
-          <%= f.label :フリガナ %><br />
-          <p class="control has-icons-left">
-            <%= f.text_field :sub_last_name, autofocus: true, autocomplete: "name", placeholder: "セイ" %>
-            <%= f.text_field :sub_first_name, autofocus: true, autocomplete: "name", placeholder: "メイ" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: " \uf0e0 Email", class: 'fa' %>
+
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:  " \uf095 Phone Number", class: 'fa' %>
+
+          <%= f.password_field :password, autocomplete: "new-password", placeholder: " \uf023 Password", class: 'fa' %>
+
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: " \uf023 Confirm your password", class: 'fa' %>
+
+          <p style="color: white;">
+            <%= f.check_box :accepted ,{},checked_value = "true",unchecked_value = "false" %>
+               Accept <a href="/public/home/terms">Terms and Conditions</a>
           </p>
-        </div>
 
-        <div class="field">
-          <%= f.label :メールアドレス %><br />
-          <p class="control has-icons-left">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "email" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
+          <%= f.submit " Create my account", class: "btn btn-large" %>
 
-        <div class="field">
-          <%= f.label :電話番号 %><br />
-          <p class="control has-icons-left">
-            <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "phone number" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
-
-        <div class="field">
-          <%= f.label :パスワード %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
-          <% end %><br />
-          <p class="control has-icons-left">
-            <%= f.password_field :password, autocomplete: "new-password" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
-
-        <div class="field">
-          <%= f.label :"パスワード(確認用)" %><br />
-          <p class="control has-icons-left">
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-            <span class="icon is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "登録" %>
-        </div>
-      <% end %>
-
-      <%= render "devise/shared/links" %>
-      </div>
-    </div>
+          <div class="btn">
+            <a href="/users/sign_in"><i class="fas fa-sign-in-alt"></i> have an account</a>
+          </div>
+    <% end %>
   </div>
-</section>
+</body>
 
 

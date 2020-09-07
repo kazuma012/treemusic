@@ -79,9 +79,12 @@ gem 'audiojs-rails'
 gem 'ransack'
 
 gem 'carrierwave'
-gem 'carrierwave-audio'
+gem 'carrierwave-audio', git: 'git@github.com:tanakaworld/carrierwave-audio.git'
+gem 'ruby-sox', '~> 0.0.3'
 
 gem 'bulma-rails'
+
+gem 'impressionist', '~>1.6.1'
 
 gem 'dotenv-rails'
 group :production do

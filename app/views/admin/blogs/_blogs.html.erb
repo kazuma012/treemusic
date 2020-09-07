@@ -1,0 +1,41 @@
+<style>
+.card {
+	width: 80%;
+}
+</style>
+
+
+<% @blogs.each do |blog| %>
+  <div class="card mb-5">
+  	<div class="card-body">
+  		<figure class="img-500x500" style="margin: auto;">
+        <%= image_tag blog.blog_image_id.url if blog.blog_image_id? %>
+  		</figure>
+
+  		<p class="card-text">
+  			<%= link_to admin_blog_path(blog) do %>
+  			  <%= blog.title %>
+  			<% end %>
+  		</p>
+
+  		<p class="card-text">
+  			<%= blog.favorites.count %>favorite
+  		</p>
+
+  		<div class="card-footer">
+		    <small class="text-muted">
+		      	<i class="far fa-calendar-alt"></i>
+		      	<%= blog.created_at.strftime("%Y-%m-%d %H:%M") %> upload
+		      	@<%= blog.user.username %>
+		    </small>
+		    <table>
+	            <tr>
+				    <td>
+				        <%= blog.comments.count %>comment
+				    </td>
+			  	</tr>
+			</table>
+		</div>
+  	</div>
+  </div>
+<% end %>
