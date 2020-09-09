@@ -12,11 +12,11 @@ CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
-      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
-      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
+      aws_access_key_id: ENV["AKIAYGQZTTHYN7IOJHK5"],
+      aws_secret_access_key: ENV["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"],
       region: 'ap-northeast-1'
     }
-    config.fog_directory  = 'rails-blog-iamge'
+    config.fog_directory  = ENV['rails-blog-iamge']
     config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/rails-blog-iamge'
   end
 end
