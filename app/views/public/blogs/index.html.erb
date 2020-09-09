@@ -12,6 +12,7 @@
         .blog-content{
           margin-top: 40px;
           margin-left: 20%;
+          margin-bottom: 50px;
         }
 </style>
 
@@ -37,10 +38,12 @@
     <div class="container">
       <div class="blog-content">
             <%= render 'blogs', blogs: @blogs %>
-            <%= paginate @blogs2 %>
       </div>
     </div>
   </div>
+</div>
+<div class="container" style="margin-left: 70%;">
+  <%= paginate @blogs2 %>
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
