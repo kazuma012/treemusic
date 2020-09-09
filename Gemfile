@@ -86,6 +86,8 @@ gem 'bulma-rails'
 
 gem 'impressionist', '~>1.6.1'
 
+gem 'fog-aws'
+
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

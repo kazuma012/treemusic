@@ -9,7 +9,7 @@
   <div class="card mb-5">
   	<div class="card-body">
   		<figure class="img-500x500" style="margin: auto;">
-        <%= image_tag blog.blog_image_id.url if blog.blog_image_id? %>
+        <%= image_tag blog.blog_image_id.to_s if blog.blog_image_id? %>
   		</figure>
 
   		<p class="card-text">
