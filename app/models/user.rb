@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :profile_image_id, ImagesUploader
   has_many :favorites, dependent: :destroy
   has_many :tracks, dependent: :destroy
   has_many :blogs, dependent: :destroy
@@ -10,8 +11,6 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :phone_number, presence: true, length: { maximum: 11 }
   paginates_per 12
-
-  attachment :profile_image
 
   def self.search(search)
     if search

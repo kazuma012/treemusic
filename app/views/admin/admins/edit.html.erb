@@ -45,7 +45,10 @@ p{
 		                </span>
 
 					<h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Profile Image</h3>
-			        <p><i class="far fa-images"></i><%= f.file_field :profile_image %></p>
+			        <p><i class="far fa-images"></i>
+			        	<%= f.file_field :profile_image_id %>
+			        	<%= f.hidden_field :profile_image_id_cache %>
+			        </p>
 
 
 				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">User Name</h3>

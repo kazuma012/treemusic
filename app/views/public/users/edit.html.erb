@@ -26,7 +26,8 @@ i{
 				<% end %>
                 <div class="card-col-3">
 				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Image</h3>
-				    <%= f.file_field :profile_image %>
+				    <%= f.file_field :profile_image_id %>
+				    <%= f.hidden_field :profile_image_id_cache %>
 
 				    <h3 calss="edit" style="background:linear-gradient(90deg,#CCCCCC 0%,#CCCCCC 0%,#000080 25%,#CCCCCC 100%); margin: 10px 0px 10px 0px;" align="center">Name</h3>
 				    <span class="icon is-left">

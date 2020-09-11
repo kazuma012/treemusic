@@ -125,7 +125,11 @@ h3{
 
 	<div class="box">
 		<div class="imgBx">
-			<%= attachment_image_tag @user, :profile_image, fallback: "no_image.jpg" %>
+			<% if @user.profile_image_id? %>
+			    <%= image_tag @user.profile_image_id.url %>
+			<% else %>
+			    <%= image_tag 'no_image.jpg' %>
+		    <% end %>
 		</div>
 		<div class="content">
 			<h3><%= @user.username %>'s profile</h3>

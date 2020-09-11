@@ -29,7 +29,7 @@ class Admin::AdminsController < ApplicationController
   private
   
   def user_params
-      params.require(:user).permit(:username, :email, :phone_number, :flag)
+      params.require(:user).permit(:username, :email, :profile_image_id, :phone_number, :flag)
   end
   
   def if_not_admin
