@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins, controllers: { sessions: 'admin/admins/sessions' }
   devise_for :users, controllers: { sessions: 'public/users/sessions',
-                                       registrations: 'public/users/registrations', 
+                                       registrations: 'public/users/registrations',
                                        passwords: 'public/users/passwords' }
   namespace :admin do
     get 'homes/top'

@@ -2,7 +2,7 @@ class Public::TracksController < ApplicationController
     before_action :authenticate_user!, except: [:index]
     def index
 		@tracks = Track.all
-		@track = Track.new	    
+		@track = Track.new
 	end
 
 	def create
@@ -54,7 +54,7 @@ class Public::TracksController < ApplicationController
     #end
 
     private
-    
+
     def track_params
     	params.require(:track).permit(:title, :track_image_id, :track_audio_id, :description)
     end

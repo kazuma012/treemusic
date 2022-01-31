@@ -27,11 +27,11 @@ class Admin::AdminsController < ApplicationController
   end
 
   private
-  
+
   def user_params
       params.require(:user).permit(:username, :email, :profile_image_id, :phone_number, :flag)
   end
-  
+
   def if_not_admin
       redirect_to root_path unless current_user.admin?
   end
