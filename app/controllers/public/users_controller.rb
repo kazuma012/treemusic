@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
       @users = User.search(params[:search])
       @users2 = User.page(params[:page])
   end
-	
+
   def show
       @user = User.find(params[:id])
   end
@@ -37,11 +37,11 @@ class Public::UsersController < ApplicationController
   end
 
   private
-  
+
   def user_params
   	  params.require(:user).permit(:username, :email, :phone_number, :profile_image_id, :profile)
   end
-  
+
   def ensure_corrent_user
   	  @user = User.find_by(id: params[:id])
   	  if @user.id != current_user.id

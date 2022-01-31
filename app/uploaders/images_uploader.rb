@@ -22,15 +22,15 @@ class ImagesUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
-  
+
   process :resize_to_limit => [700, 700]
 
-  version :thumb do 
-   process resize_to_fit: [62.5, 62.5] 
-  end 
-  version :thumb50 do 
+  version :thumb do
    process resize_to_fit: [62.5, 62.5]
-  end 
+  end
+  version :thumb50 do
+   process resize_to_fit: [62.5, 62.5]
+  end
   # Process files as they are uploaded:
   # process scale: [200, 300]
   #
@@ -60,7 +60,7 @@ class ImagesUploader < CarrierWave::Uploader::Base
   end
 
   protected
-  
+
   def secure_token
      var = :"@#{mounted_as}_secure_token"
      model.instance_variable_get(var) or model.instance_variable_set(var, SecureRandom.uuid)
